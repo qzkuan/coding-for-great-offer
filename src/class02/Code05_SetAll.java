@@ -2,6 +2,9 @@ package class02;
 
 import java.util.HashMap;
 
+/**
+ * 支持setAll操作的HashMap
+ */
 public class Code05_SetAll {
 
 	public static class MyValue<V> {
@@ -16,7 +19,9 @@ public class Code05_SetAll {
 
 	public static class MyHashMap<K, V> {
 		private HashMap<K, MyValue<V>> map;
+		// 时间戳，记录每个put操作的时间
 		private long time;
+		// 记录setAll的时间戳，以及setAll的值
 		private MyValue<V> setAll;
 
 		public MyHashMap() {
@@ -28,7 +33,10 @@ public class Code05_SetAll {
 		public void put(K key, V value) {
 			map.put(key, new MyValue<V>(value, time++));
 		}
-
+		/**
+		 * 修改set里所有记录的值，时间复杂度O(1)
+		 * @param value setAll值
+		 */
 		public void setAll(V value) {
 			setAll = new MyValue<V>(value, time++);
 		}
